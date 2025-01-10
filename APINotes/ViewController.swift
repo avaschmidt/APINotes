@@ -1,13 +1,17 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
+    @IBOutlet weak var sunsetOutlet: UILabel!
+    
+    @IBOutlet weak var sunriseOutlet: UILabel!
+    
     @IBOutlet weak var tempOutlet: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         getWeather()
     }
-
+    
     func getWeather(){
         // creating an object of the URL session class so we can make an API call
         let session = URLSession.shared
@@ -41,26 +45,62 @@ class ViewController: UIViewController {
                                 DispatchQueue.main.async {
                                     self.tempOutlet.text = "The temp is \(theTemp)"
                                 }
-                               
+                                
                             }
+                            
+                        }
+                        if let sysDictionary = jsonObj.value(forKey: "sys") as? NSDictionary{
+                            if let sunrise = sysDictionary.value(forKey: "sunrise") as? Int{
+                                print(sunrise)
+                                // converting to date
+                                let timeIntervalRise = TimeInterval(sunrise)
+                                let date = Date(timeIntervalSince1970: timeIntervalRise)
+                                print(date)
+                                //creating a formatter to convert the date to time
+                                let formatter = DateFormatter()
+                                formatter.dateStyle = .none
+                                formatter.timeStyle = .short
+                                let dateString = formatter.string(from: date)
+                                print(dateString)
+                                DispatchQueue.main.async {
+                                    self.sunriseOutlet.text = "The sunrise time is \(dateString)"
+                                }
+                                
+                            }
+                            if let sunset = sysDictionary.value(forKey: "sunset") as? Int{
+                                print(sunset)
+                                let timeIntervalSet = TimeInterval(sunset)
+                                let date = Date(timeIntervalSince1970: timeIntervalSet)
+                                print(date)
+                                //creating a formatter to convert the date to time
+                                let formatter = DateFormatter()
+                                formatter.dateStyle = .none
+                                formatter.timeStyle = .short
+                                let dateString = formatter.string(from: date)
+                                print(dateString)
+                                DispatchQueue.main.async {
+                                    self.sunsetOutlet.text = "The sunrise time is \(dateString)"
+                                }
+                                
+                            }
+                        }
+                        else{
+                            print("Can't convert to JSON")
                         }
                     }
                     else{
-                        print("Can't convert to JSON")
+                        print("Could't get data")
                     }
                 }
-                else{
-                    print("Could't get data")
-                }
             }
+            
+            
         }
+        
         // constantly calling for the data
         dataTask.resume()
         
+        
     }
     
-   
-    
-
 }
-
