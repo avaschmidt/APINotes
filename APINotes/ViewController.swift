@@ -125,7 +125,11 @@ class ViewController: UIViewController {
                         }
                         if let windDictionary = jsonObj.value(forKey: "wind") as? NSDictionary{
                             if let windSpeed = windDictionary.value(forKey: "speed") as? Int{
-                                
+                                print(windSpeed)
+                                    // happening on the main thread
+                                    DispatchQueue.main.async {
+                                        self.windOutlet.text = "The wind speed is \(windSpeed) mph"
+                                    }
                             }
                         }
                         else{
