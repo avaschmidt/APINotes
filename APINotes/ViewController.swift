@@ -1,6 +1,8 @@
 import UIKit
 
 class ViewController: UIViewController {
+    @IBOutlet weak var directionOutlet: UILabel!
+    
     @IBOutlet weak var windOutlet: UILabel!
     
     @IBOutlet weak var maxTempOutlet: UILabel!

@@ -66,7 +66,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Wind Direction" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zg2-ww-u7I">
-                                <rect key="frame" x="0.0" y="740" width="393" height="14"/>
+                                <rect key="frame" x="0.0" y="742" width="393" height="14"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                 <nil key="textColor"/>
@@ -77,6 +77,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
+                        <outlet property="directionOutlet" destination="zg2-ww-u7I" id="hW6-RH-fTC"/>
                         <outlet property="humidityOutlet" destination="2qr-Tx-6Rr" id="Wne-WQ-cNx"/>
                         <outlet property="maxTempOutlet" destination="3cg-zX-GaJ" id="Npw-Ex-2pe"/>
                         <outlet property="minTempOutlet" destination="u52-vj-IdC" id="xbh-td-B5Q"/>
