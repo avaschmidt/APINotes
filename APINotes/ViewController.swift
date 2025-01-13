@@ -1,6 +1,13 @@
 import UIKit
 
 class ViewController: UIViewController {
+    @IBOutlet weak var windOutlet: UILabel!
+    
+    @IBOutlet weak var maxTempOutlet: UILabel!
+    
+    @IBOutlet weak var minTempOutlet: UILabel!
+    
+   @IBOutlet weak var humidityOutlet: UILabel!
     
     @IBOutlet weak var sunsetOutlet: UILabel!
     
@@ -43,10 +50,40 @@ class ViewController: UIViewController {
                                 
                                 // happening on the main thread
                                 DispatchQueue.main.async {
-                                    self.tempOutlet.text = "The temp is \(theTemp)"
+                                    self.tempOutlet.text = "The temp is \(theTemp) degrees F"
                                 }
                                 
                             }
+                            if let humid =  mainDictionary.value(forKey: "humidity"){
+                                print(humid)
+                                
+                                // happening on the main thread
+                                DispatchQueue.main.async {
+                                    self.humidityOutlet.text = "The humidity is \(humid)%"
+                                }
+                                
+                            }
+                            
+                            if let theMin =  mainDictionary.value(forKey: "temp_min"){
+                                print(theMin)
+                                
+                                // happening on the main thread
+                                DispatchQueue.main.async {
+                                    self.minTempOutlet.text = "The minimum temp is \(theMin) degrees F"
+                                }
+                                
+                            }
+                            
+                            if let theMax =  mainDictionary.value(forKey: "temp_max"){
+                                print(theMax)
+                                
+                                // happening on the main thread
+                                DispatchQueue.main.async {
+                                    self.maxTempOutlet.text = "The maximum temp is \(theMax) degrees F"
+                                }
+                                
+                            }
+
                             
                         }
                         if let sysDictionary = jsonObj.value(forKey: "sys") as? NSDictionary{
@@ -79,8 +116,15 @@ class ViewController: UIViewController {
                                 let dateString = formatter.string(from: date)
                                 print(dateString)
                                 DispatchQueue.main.async {
-                                    self.sunsetOutlet.text = "The sunrise time is \(dateString)"
+                                    self.sunsetOutlet.text = "The sunset time is \(dateString)"
                                 }
+                                
+                            }
+                            
+                            
+                        }
+                        if let windDictionary = jsonObj.value(forKey: "wind") as? NSDictionary{
+                            if let windSpeed = windDictionary.value(forKey: "speed") as? Int{
                                 
                             }
                         }
