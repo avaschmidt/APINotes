@@ -133,6 +133,10 @@ class ViewController: UIViewController {
                                         self.windOutlet.text = "The wind speed is \(windSpeed) mph"
                                     }
                             }
+                            if let windDirection = jsonObj.value(forKey: "deg") as? Int{
+                                print(windDirection)
+                                
+                            }
                         }
                         else{
                             print("Can't convert to JSON")
